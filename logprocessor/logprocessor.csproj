@@ -49,6 +49,10 @@
     <Compile Include="CreateDataTableProcessor.cs" />
     <Compile Include="CsvProductionLogFileParser.cs" />
     <Compile Include="CsvProductionLogSortByActualPressureProcessor.cs" />
+    <Compile Include="data\models\ProductionLogEvaluatedMomentValues.cs" />
+    <Compile Include="data\models\ProductionLogEvaluated.cs" />
+    <Compile Include="data\models\ProductionLogDataSource.cs" />
+    <Compile Include="data\models\ProductionLogDataSourceMomentValues.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

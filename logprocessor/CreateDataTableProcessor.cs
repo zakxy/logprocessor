@@ -1,25 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using logprocessor.data.models;
 using System.Data;
-using System.Linq;
 
 namespace logprocessor
 {
     public class CreateDataTableProcessor
     {
-        public DataTable Process(List<string[]> evaluatedCsvLines)
+        public DataTable Process(ProductionLogEvaluated evaluatedObject)
         {
             DataTable table = new DataTable();
-            // Create columns
-            foreach (string columnName in evaluatedCsvLines[0])
-            {
-                table.Columns.Add(columnName, typeof(string));
-            }
-            // Create rows
-            foreach (var splittedCsvLine in evaluatedCsvLines.Skip(1))
-            {
-                table.Rows.Add(splittedCsvLine);
-            }
+            CreateColumns(table);
+            CreateRows(table, evaluatedObject);
             return table;
+        }
+
+        private void CreateColumns(DataTable table)
+        {
+            table.Columns.Add("LogTime", typeof(string));
+            table.Columns.Add("ControlPressure", typeof(double));
+            table.Columns.Add("ActualPressure", typeof(double));
+            table.Columns.Add("ControlTemperature", typeof(double));
+            table.Columns.Add("ActualTemperature", typeof(double));
+        }
+        private void CreateRows(DataTable table, ProductionLogEvaluated evaluatedLogObject)
+        {
+            foreach (ProductionLogEvaluatedMomentValues momentValues in evaluatedLogObject.MomentValueObjects)
+            {
+                table.Rows.Add(
+                    momentValues.LogTime,
+                    momentValues.ControlPressure,
+                    momentValues.ActualPressure,
+                    momentValues.ControlTemperature,
+                    momentValues.ActualTemperature);
+            }
         }
     }
 }

@@ -21,8 +21,8 @@ namespace logprocessor
 
         private DataTable LoadFileAndCreateTable(string fileName)
         {
-            var splittedLines = new CsvProductionLogFileParser().Parse(fileName);
-            var evaluatedLines = new CsvProductionLogSortByActualPressureProcessor().Process(splittedLines);
+            var sourceObject = new CsvProductionLogFileParser().Parse(fileName);
+            var evaluatedLines = new CsvProductionLogSortByActualPressureProcessor().Process(sourceObject);
             return new CreateDataTableProcessor().Process(evaluatedLines);
         }
     }
