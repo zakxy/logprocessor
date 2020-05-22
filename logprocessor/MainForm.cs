@@ -15,15 +15,8 @@ namespace logprocessor
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                dataGridView.DataSource = LoadFileAndCreateTable(openFileDialog.FileName);
+                dataGridView.DataSource = new LogFileProcessor().RunProcess(openFileDialog.FileName);
             }
-        }
-
-        private DataTable LoadFileAndCreateTable(string fileName)
-        {
-            var splittedLines = new CsvProductionLogFileParser().Parse(fileName);
-            var evaluatedLines = new CsvProductionLogSortByActualPressureProcessor().Process(splittedLines);
-            return new CreateDataTableProcessor().Process(evaluatedLines);
         }
     }
 }
