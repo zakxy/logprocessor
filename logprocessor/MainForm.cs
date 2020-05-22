@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace logprocessor
@@ -15,7 +14,12 @@ namespace logprocessor
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                dataGridView.DataSource = new LogFileProcessor().RunProcess(openFileDialog.FileName);
+                var processor = new LogFileProcessor(
+                    parser: new CsvProductionLogFileParser(openFileDialog.FileName),
+                    sortProcessor: new CsvProductionLogSortByActualPressureProcessor(),
+                    createTableProcessor: new CreateDataTableProcessor());
+
+                dataGridView.DataSource = processor.RunProcess();
             }
         }
     }
