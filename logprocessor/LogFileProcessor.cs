@@ -1,26 +1,30 @@
-﻿using System.Data;
+﻿using logprocessor.interfaces;
+using System.Collections.Generic;
 
 namespace logprocessor
 {
     public class LogFileProcessor
     {
-        private CsvProductionLogFileParser _parser;
-        private CsvProductionLogSortByActualPressureProcessor _sortProcessor;
-        private CreateDataTableProcessor _createTableProcessor;
+        private ISourceObjectsGetter _sourceObjectsGetter;
+        private ISourceObjectProcessor _sourceObjectProcessor;
+        private IEvaluatedObjectProcessor _evaluatedObjectProcessor;
 
-        public LogFileProcessor(CsvProductionLogFileParser parser,
-            CsvProductionLogSortByActualPressureProcessor sortProcessor,
-            CreateDataTableProcessor createTableProcessor)
+        public LogFileProcessor(ISourceObjectsGetter sourceObjectsGetter,
+            ISourceObjectProcessor sourceObjectProcessor,
+            IEvaluatedObjectProcessor evaluatedObjectProcessor)
         {
-            _parser = parser;
-            _sortProcessor = sortProcessor;
-            _createTableProcessor = createTableProcessor;
+            _sourceObjectsGetter = sourceObjectsGetter;
+            _sourceObjectProcessor = sourceObjectProcessor;
+            _evaluatedObjectProcessor = evaluatedObjectProcessor;
         }
-        public DataTable RunProcess()
+        public void RunProcess()
         {
-            var splittedLines = _parser.Parse();
-            var evalueatedLines = _sortProcessor.Process(splittedLines);
-            return _createTableProcessor.Process(evalueatedLines);
+            List<object> results = new List<object>();
+            foreach (IDataSourceObject sourceObject in _sourceObjectsGetter.GetSourceObjects())
+            {
+                var evaluatedObject = _sourceObjectProcessor.Process(sourceObject);
+                _evaluatedObjectProcessor.Process(evaluatedObject);
+            }
         }
     }
 }

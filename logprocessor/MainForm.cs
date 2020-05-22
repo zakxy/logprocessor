@@ -1,4 +1,7 @@
-﻿using System;
+﻿using logprocessor.evaluatedprocessor;
+using logprocessor.sourcegetter;
+using logprocessor.sourceprocessor;
+using System;
 using System.Windows.Forms;
 
 namespace logprocessor
@@ -14,12 +17,15 @@ namespace logprocessor
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                var processor = new LogFileProcessor(
-                    parser: new CsvProductionLogFileParser(openFileDialog.FileName),
-                    sortProcessor: new CsvProductionLogSortByActualPressureProcessor(),
-                    createTableProcessor: new CreateDataTableProcessor());
+                var dataTableProcessor = new CreateDataTableProcessor();
 
-                dataGridView.DataSource = processor.RunProcess();
+                var processor = new LogFileProcessor(
+                    sourceObjectsGetter: new CsvProductionLogFileParser(openFileDialog.FileName),
+                    sourceObjectProcessor: new CsvProductionLogSortByActualPressureProcessor(),
+                    evaluatedObjectProcessor: dataTableProcessor);
+
+                processor.RunProcess();
+                dataGridView.DataSource = dataTableProcessor.Result;
             }
         }
     }
