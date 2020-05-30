@@ -8,24 +8,35 @@ using System.Text;
 
 namespace logprocessor.sourcegetter
 {
-    public class CsvProductionLogFileParser : ISourceObjectsGetter
+    public class CsvProductionLogFilesParser : ISourceObjectsGetter
     {
-        private string _csvFileName;
+        private string[] _csvFileNames;
 
-        public CsvProductionLogFileParser(string csvFileName)
+        public CsvProductionLogFilesParser(string[] csvFileNames)
         {
-            _csvFileName = csvFileName;
+            _csvFileNames = csvFileNames;
         }
         public IDataSourceObject[] GetSourceObjects()
         {
-            ProductionLogDataSource sourceObject = new ProductionLogDataSource();
-            sourceObject.Designation = Path.GetFileNameWithoutExtension(_csvFileName);
+            List<ProductionLogDataSource> sourceObjects = new List<ProductionLogDataSource>();
+            foreach (string csvFileName in _csvFileNames)
+            {
+                sourceObjects.Add(CreateSourceObject(csvFileName));
+            }
+            return sourceObjects.ToArray();
+        }
 
-            var csvLines = File.ReadAllLines(_csvFileName, Encoding.Default);
+        public ProductionLogDataSource CreateSourceObject(string csvFileName)
+        {
+            ProductionLogDataSource sourceObject = new ProductionLogDataSource();
+            sourceObject.Designation = Path.GetFileNameWithoutExtension(csvFileName);
+
+            var csvLines = File.ReadAllLines(csvFileName, Encoding.Default);
             sourceObject.MomentValueObjects = ParseLines(csvLines);
 
-            return new ProductionLogDataSource[] { sourceObject };
+            return sourceObject;
         }
+
         public List<ProductionLogDataSourceMomentValues> ParseLines(string[] csvLines)
         {
             return csvLines
@@ -47,6 +58,6 @@ namespace logprocessor.sourcegetter
             dataItem.ActualTemperature = Convert.ToDouble(csvValues[valueIndex++]);
 
             return dataItem;
+        }
     }
-}
 }

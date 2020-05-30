@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace logprocessor
 {
-    public class LogFileProcessor
+    public class LogFilesProcessor
     {
         private ISourceObjectsGetter _sourceObjectsGetter;
         private ISourceObjectProcessor _sourceObjectProcessor;
         private IEvaluatedObjectProcessor _evaluatedObjectProcessor;
 
-        public LogFileProcessor(ISourceObjectsGetter sourceObjectsGetter,
+        public LogFilesProcessor(ISourceObjectsGetter sourceObjectsGetter,
             ISourceObjectProcessor sourceObjectProcessor,
             IEvaluatedObjectProcessor evaluatedObjectProcessor)
         {

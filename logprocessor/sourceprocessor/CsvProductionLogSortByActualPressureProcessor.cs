@@ -28,7 +28,7 @@ namespace logprocessor.sourceprocessor
                 ControlPressure = sourceValues.ControlPressure,
                 ActualPressure = sourceValues.ActualPressure,
                 ControlTemperature = sourceValues.ControlTemperature,
-                ActualTemperature = sourceValues.ControlTemperature
+                ActualTemperature = sourceValues.ActualTemperature
             };
         }
     }

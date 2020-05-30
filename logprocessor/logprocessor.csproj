@@ -47,14 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="evaluatedprocessor\CreateDataTableProcessor.cs" />
-    <Compile Include="sourcegetter\CsvProductionLogFileParser.cs" />
+    <Compile Include="sourcegetter\CsvProductionLogFilesParser.cs" />
     <Compile Include="sourceprocessor\CsvProductionLogSortByActualPressureProcessor.cs" />
     <Compile Include="interfaces\IDataSourceObject.cs" />
     <Compile Include="interfaces\IEvaluatedObject.cs" />
     <Compile Include="interfaces\IEvaluatedObjectProcessor.cs" />
     <Compile Include="interfaces\ISourceObjectProcessor.cs" />
     <Compile Include="interfaces\ISourceObjectsGetter.cs" />
-    <Compile Include="LogFileProcessor.cs" />
+    <Compile Include="LogFilesProcessor.cs" />
     <Compile Include="data\models\ProductionLogEvaluatedMomentValues.cs" />
     <Compile Include="data\models\ProductionLogEvaluated.cs" />
     <Compile Include="data\models\ProductionLogDataSource.cs" />
