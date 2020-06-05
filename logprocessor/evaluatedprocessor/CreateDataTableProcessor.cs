@@ -32,6 +32,7 @@ namespace logprocessor.evaluatedprocessor
             table.Columns.Add("ActualPressure", typeof(double));
             table.Columns.Add("ControlTemperature", typeof(double));
             table.Columns.Add("ActualTemperature", typeof(double));
+            table.Columns.Add("Count", typeof(int));
         }
         private void CreateRows(DataTable table, ProductionLogEvaluated evaluatedLogObject)
         {
@@ -42,7 +43,8 @@ namespace logprocessor.evaluatedprocessor
                     momentValues.ControlPressure,
                     momentValues.ActualPressure,
                     momentValues.ControlTemperature,
-                    momentValues.ActualTemperature);
+                    momentValues.ActualTemperature,
+                    momentValues.Count);
             }
         }
     }
