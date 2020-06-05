@@ -8,10 +8,12 @@ namespace logprocessor.evaluatedprocessor
     public class CreateDataTableProcessor : IEvaluatedObjectProcessor
     {
         private List<DataTable> _resultList;
+        private IEvaluatedObjectProcessor _followUpProcessor;
 
-        public CreateDataTableProcessor(List<DataTable> resultList)
+        public CreateDataTableProcessor(List<DataTable> resultList, IEvaluatedObjectProcessor followUpProcessor = null)
         {
             _resultList = resultList;
+            _followUpProcessor = followUpProcessor;
         }
 
         public void Process(IEvaluatedObject evaluatedObject)
@@ -23,6 +25,8 @@ namespace logprocessor.evaluatedprocessor
             CreateRows(table, evaluatedLogObject);
 
             _resultList.Add(table);
+
+            _followUpProcessor?.Process(evaluatedLogObject);
         }
 
         private void CreateColumns(DataTable table)
