@@ -9,5 +9,6 @@ namespace logprocessor.data.models
         public double ActualPressure { get; set; }
         public double ControlTemperature { get; set; }
         public double ActualTemperature { get; set; }
+        public int Count { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace logprocessor.sourceprocessor
 {
-    public class CsvProductionLogSortByActualPressureProcessor : ISourceObjectProcessor
+    public class SortProductionLogByActualPressureProcessor : ISourceObjectProcessor
     {
         public IEvaluatedObject Process(IDataSourceObject dataSourceObject)
         {
@@ -28,7 +28,8 @@ namespace logprocessor.sourceprocessor
                 ControlPressure = sourceValues.ControlPressure,
                 ActualPressure = sourceValues.ActualPressure,
                 ControlTemperature = sourceValues.ControlTemperature,
-                ActualTemperature = sourceValues.ControlTemperature
+                ActualTemperature = sourceValues.ActualTemperature,
+                Count = sourceValues.Count
             };
         }
     }

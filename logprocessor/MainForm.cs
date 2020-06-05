@@ -21,7 +21,7 @@ namespace logprocessor
 
                 var processor = new LogFileProcessor(
                     sourceObjectsGetter: new CsvProductionLogFileParser(openFileDialog.FileName),
-                    sourceObjectProcessor: new CsvProductionLogSortByActualPressureProcessor(),
+                    sourceObjectProcessor: new SortProductionLogByActualPressureProcessor(),
                     evaluatedObjectProcessor: dataTableProcessor);
 
                 processor.RunProcess();

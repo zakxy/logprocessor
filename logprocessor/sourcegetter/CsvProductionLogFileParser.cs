@@ -45,6 +45,7 @@ namespace logprocessor.sourcegetter
             dataItem.ActualPressure = Convert.ToDouble(csvValues[valueIndex++]);
             dataItem.ControlTemperature = Convert.ToDouble(csvValues[valueIndex++]);
             dataItem.ActualTemperature = Convert.ToDouble(csvValues[valueIndex++]);
+            dataItem.Count = Convert.ToInt32(csvValues[valueIndex++]);
 
             return dataItem;
     }
