@@ -48,9 +48,10 @@
   <ItemGroup>
     <Compile Include="evaluatedprocessor\CreateDataTableProcessor.cs" />
     <Compile Include="evaluatedprocessor\FilePerformanceRecorder.cs" />
+    <Compile Include="evaluatedprocessor\SortByActualPressureProcessor.cs" />
     <Compile Include="evaluatedprocessor\RemoveActualPressureRangeProcessor.cs" />
     <Compile Include="sourcegetter\CsvProductionLogFilesParser.cs" />
-    <Compile Include="sourceprocessor\SortProductionLogByActualPressureProcessor.cs" />
+    <Compile Include="sourceprocessor\ProductionLogSourceToEvaluatedConverter.cs" />
     <Compile Include="interfaces\IDataSourceObject.cs" />
     <Compile Include="interfaces\IEvaluatedObject.cs" />
     <Compile Include="interfaces\IEvaluatedObjectProcessor.cs" />

@@ -25,10 +25,12 @@ namespace logprocessor
 
                 var processor = new LogFilesProcessor(
                     sourceObjectsGetter: new CsvProductionLogFilesParser(openFileDialog.FileNames),
-                    sourceObjectProcessor: new SortProductionLogByActualPressureProcessor(),
-                    evaluatedObjectProcessor: new FilePerformanceRecorder(fileName: "executiontime.log", followUpProcessor:
-                        new RemoveActualPressureRangeProcessor(minRange: 147.0, maxRange: 147.99,
-                            followUpProcessor: new CreateDataTableProcessor(resultList: _tables))));
+                    sourceObjectProcessor: new ProductionLogSourceToEvaluatedConverter(),
+                    evaluatedObjectProcessor: 
+                        new FilePerformanceRecorder(fileName: "executiontime.log", followUpProcessor:
+                            new RemoveActualPressureRangeProcessor(minRange: 147.0, maxRange: 147.99, followUpProcessor:
+                                new SortByActualPressureProcessor(followUpProcessor: 
+                                    new CreateDataTableProcessor(resultList: _tables)))));
 
                 processor.RunProcess();
 

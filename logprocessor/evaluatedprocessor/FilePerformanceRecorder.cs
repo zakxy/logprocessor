@@ -23,7 +23,7 @@ namespace logprocessor.evaluatedprocessor
             _followUpProcessor.Process(evaluatedObject);
 
             var elapsed = sw.Elapsed;
-            File.AppendAllText(_fileName, elapsed.TotalMilliseconds + "ms" + Environment.NewLine);
+            File.AppendAllText(_fileName, $"{DateTime.Now} {elapsed.TotalMilliseconds} ms{Environment.NewLine}");
         }
     }
 }
