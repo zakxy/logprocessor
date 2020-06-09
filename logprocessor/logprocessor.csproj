@@ -55,8 +55,8 @@
     <Compile Include="interfaces\IDataSourceObject.cs" />
     <Compile Include="interfaces\IEvaluatedObject.cs" />
     <Compile Include="interfaces\IEvaluatedObjectProcessor.cs" />
-    <Compile Include="interfaces\ISourceObjectProcessor.cs" />
-    <Compile Include="interfaces\ISourceObjectsGetter.cs" />
+    <Compile Include="interfaces\IDataSourceObjectProcessor.cs" />
+    <Compile Include="interfaces\IDataSourceObjectsGetter.cs" />
     <Compile Include="LogFilesProcessor.cs" />
     <Compile Include="data\models\ProductionLogEvaluatedMomentValues.cs" />
     <Compile Include="data\models\ProductionLogEvaluated.cs" />

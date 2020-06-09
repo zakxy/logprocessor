@@ -1,6 +1,6 @@
 ﻿namespace logprocessor.interfaces
 {
-    public interface ISourceObjectProcessor
+    public interface IDataSourceObjectProcessor
     {
         IEvaluatedObject Process(IDataSourceObject dataSourceObject);
     }

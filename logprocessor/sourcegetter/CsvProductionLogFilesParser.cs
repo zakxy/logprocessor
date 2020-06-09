@@ -8,7 +8,7 @@ using System.Text;
 
 namespace logprocessor.sourcegetter
 {
-    public class CsvProductionLogFilesParser : ISourceObjectsGetter
+    public class CsvProductionLogFilesParser : IDataSourceObjectsGetter
     {
         private string[] _csvFileNames;
 

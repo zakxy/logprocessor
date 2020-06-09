@@ -1,6 +1,6 @@
 ﻿namespace logprocessor.interfaces
 {
-    public interface ISourceObjectsGetter
+    public interface IDataSourceObjectsGetter
     {
         IDataSourceObject[] GetSourceObjects();
     }
