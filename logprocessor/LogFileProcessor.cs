@@ -5,12 +5,12 @@ namespace logprocessor
 {
     public class LogFileProcessor
     {
-        private ISourceObjectsGetter _sourceObjectsGetter;
-        private ISourceObjectProcessor _sourceObjectProcessor;
+        private IDataSourceObjectsGetter _sourceObjectsGetter;
+        private IDataSourceObjectProcessor _sourceObjectProcessor;
         private IEvaluatedObjectProcessor _evaluatedObjectProcessor;
 
-        public LogFileProcessor(ISourceObjectsGetter sourceObjectsGetter,
-            ISourceObjectProcessor sourceObjectProcessor,
+        public LogFileProcessor(IDataSourceObjectsGetter sourceObjectsGetter,
+            IDataSourceObjectProcessor sourceObjectProcessor,
             IEvaluatedObjectProcessor evaluatedObjectProcessor)
         {
             _sourceObjectsGetter = sourceObjectsGetter;

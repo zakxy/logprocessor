@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace logprocessor.sourceprocessor
 {
-    public class SortProductionLogByActualPressureProcessor : ISourceObjectProcessor
+    public class SortProductionLogByActualPressureProcessor : IDataSourceObjectProcessor
     {
         public IEvaluatedObject Process(IDataSourceObject dataSourceObject)
         {
