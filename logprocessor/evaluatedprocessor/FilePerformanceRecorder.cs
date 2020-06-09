@@ -5,15 +5,13 @@ using System.IO;
 
 namespace logprocessor.evaluatedprocessor
 {
-    public class FilePerformanceRecorder : IEvaluatedObjectProcessor
+    public class FilePerformanceRecorder : BaseProcessorWithFollowUp, IEvaluatedObjectProcessor
     {
         private string _fileName;
-        private IEvaluatedObjectProcessor _followUpProcessor;
 
-        public FilePerformanceRecorder(string fileName, IEvaluatedObjectProcessor followUpProcessor)
+        public FilePerformanceRecorder(string fileName, IEvaluatedObjectProcessor followUpProcessor) : base(followUpProcessor)
         {
             _fileName = fileName;
-            _followUpProcessor = followUpProcessor;
         }
 
         public void Process(IEvaluatedObject evaluatedObject)

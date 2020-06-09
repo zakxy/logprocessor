@@ -3,13 +3,10 @@ using logprocessor.interfaces;
 
 namespace logprocessor.evaluatedprocessor
 {
-    public class SortByActualPressureProcessor : IEvaluatedObjectProcessor
+    public class SortByActualPressureProcessor : BaseProcessorWithFollowUp, IEvaluatedObjectProcessor
     {
-        private IEvaluatedObjectProcessor _followUpProcessor;
-
-        public SortByActualPressureProcessor(IEvaluatedObjectProcessor followUpProcessor = null)
+        public SortByActualPressureProcessor(IEvaluatedObjectProcessor followUpProcessor = null) : base(followUpProcessor)
         {
-            _followUpProcessor = followUpProcessor;
         }
 
         public void Process(IEvaluatedObject evaluatedObject)

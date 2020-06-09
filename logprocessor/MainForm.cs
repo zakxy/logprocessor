@@ -1,4 +1,5 @@
-﻿using logprocessor.evaluatedprocessor;
+﻿using logprocessor.data.models;
+using logprocessor.evaluatedprocessor;
 using logprocessor.sourcegetter;
 using logprocessor.sourceprocessor;
 using System;
@@ -22,14 +23,15 @@ namespace logprocessor
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 _tables = new List<DataTable>();
+                List<ProductionLogEvaluatedMomentValues> removedObjects = new List<ProductionLogEvaluatedMomentValues>();
 
                 var processor = new LogFilesProcessor(
                     sourceObjectsGetter: new CsvProductionLogFilesParser(openFileDialog.FileNames),
                     sourceObjectProcessor: new ProductionLogSourceToEvaluatedConverter(),
-                    evaluatedObjectProcessor: 
+                    evaluatedObjectProcessor:
                         new FilePerformanceRecorder(fileName: "executiontime.log", followUpProcessor:
-                            new RemoveActualPressureRangeProcessor(minRange: 147.0, maxRange: 147.99, followUpProcessor:
-                                new SortByActualPressureProcessor(followUpProcessor: 
+                            new RemoveActualPressureRangeProcessor(minRange: 147.0, maxRange: 147.99, removedObjects: removedObjects, followUpProcessor:
+                                new SortByActualPressureProcessor(followUpProcessor:
                                     new CreateDataTableProcessor(resultList: _tables)))));
 
                 processor.RunProcess();

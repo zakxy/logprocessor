@@ -5,15 +5,13 @@ using System.Data;
 
 namespace logprocessor.evaluatedprocessor
 {
-    public class CreateDataTableProcessor : IEvaluatedObjectProcessor
+    public class CreateDataTableProcessor : BaseProcessorWithFollowUp, IEvaluatedObjectProcessor
     {
         private List<DataTable> _resultList;
-        private IEvaluatedObjectProcessor _followUpProcessor;
 
-        public CreateDataTableProcessor(List<DataTable> resultList, IEvaluatedObjectProcessor followUpProcessor = null)
+        public CreateDataTableProcessor(List<DataTable> resultList, IEvaluatedObjectProcessor followUpProcessor = null) : base(followUpProcessor)
         {
             _resultList = resultList;
-            _followUpProcessor = followUpProcessor;
         }
 
         public void Process(IEvaluatedObject evaluatedObject)
