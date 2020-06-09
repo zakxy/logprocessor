@@ -9,7 +9,7 @@ namespace logprocessor
         private IDataSourceObjectProcessor _sourceObjectProcessor;
         private IEvaluatedObjectProcessor _evaluatedObjectProcessor;
 
-        public LogFileProcessor(IDataSourceObjectsGetter sourceObjectsGetter,
+        public LogFilesProcessor(IDataSourceObjectsGetter sourceObjectsGetter,
             IDataSourceObjectProcessor sourceObjectProcessor,
             IEvaluatedObjectProcessor evaluatedObjectProcessor)
         {
